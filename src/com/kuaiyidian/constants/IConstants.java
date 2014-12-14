@@ -93,7 +93,10 @@ public class IConstants {
 	 * 一级导航
 	 */
 	public static final int PARENT_BAR = -1;
-	
+	/**
+	 * 导航栏启用
+	 */
+	public static final int ENABEL_ON = 1;
 	/**
 	 * 显示
 	 */

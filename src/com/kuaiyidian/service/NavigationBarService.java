@@ -281,7 +281,7 @@ public class NavigationBarService extends BaseService {
 	 * @return
 	 * @throws Exception
 	 */
-	public List<Map<String, Object>> queryNavigationBarList(long parentId,
+	public List<Map<String, Object>> queryNavigationBarFirstList(long parentId,
 			Integer enable) throws Exception {
 		Connection conn = connectionManager.getConnection();
 
@@ -316,7 +316,7 @@ public class NavigationBarService extends BaseService {
 	 * @return
 	 * @throws Exception
 	 */
-	public List<Map<String, Object>> queryNavigationBarList(long id, long parentId,
+	public List<Map<String, Object>> queryNavigationBarSencondList(long parentId,
 			Integer enable) throws Exception {
 		Connection conn = connectionManager.getConnection();
 
@@ -325,10 +325,6 @@ public class NavigationBarService extends BaseService {
 		StringBuffer condition = new StringBuffer();
 
 		condition.append("1=1");
-
-		if (id > 0) {
-			condition.append(" and id = " + id);
-		}
 		
 		if (parentId > 0) {
 			condition.append(" and parentId = " + parentId);
@@ -348,7 +344,30 @@ public class NavigationBarService extends BaseService {
 		}
 		return list;
 	}
-	
+	public List<Map<String, Object>> queryNavigationBarListAll(Integer enable) throws Exception {
+		Connection conn = connectionManager.getConnection();
+
+		List<Map<String, Object>> list = new ArrayList<Map<String, Object>>();
+
+		StringBuffer condition = new StringBuffer();
+
+		condition.append("1=1");
+
+		if (enable != null && enable == 1) {
+			condition.append(" and enable = " + enable);
+		}
+		try {
+			list = navigationBarDao.queryNavigationBarAll(conn, "*", condition.toString(),
+					"sortIndex asc");
+		} catch (Exception e) {
+			log.error(e);
+			e.printStackTrace();
+			throw e;
+		} finally {
+			conn.close();
+		}
+		return list;
+	}
 	/**
 	 * 查询页数据
 	 * @param pageBean

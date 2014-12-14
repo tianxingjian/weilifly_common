@@ -651,7 +651,8 @@ public class Dao {
 		public class t_navigationbar extends Table {
 			public Field id = new Field(this, "`id`", Types.BIGINT, true);
 			public Field _name = new Field(this, "`name`", Types.VARCHAR, false);
-			public Field parentId = new Field(this, "`parentId`", Types.BIGINT, true);
+			public Field orderName = new Field(this, "`orderName`", Types.VARCHAR, false);
+			public Field parentId = new Field(this, "`parentId`", Types.BIGINT, false);
 			public Field enable = new Field(this, "`enable`", Types.INTEGER, false);
 			public Field url = new Field(this, "`url`", Types.VARCHAR, false);
 			public Field type = new Field(this, "`type`", Types.INTEGER, false);
