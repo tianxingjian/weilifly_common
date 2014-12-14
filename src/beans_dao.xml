@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="
+    http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+    http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.5.xsd
+    http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-2.5.xsd">
+    
+   <bean id="adminDao" class="com.kuaiyidian.dao.AdminDao" />
+   <bean id="regionDao" class="com.kuaiyidian.dao.RegionDao" />
+   <bean id="rightsDao" class="com.kuaiyidian.dao.RightsDao" />
+   <bean id="roleDao" class="com.kuaiyidian.dao.RoleDao" />
+   <bean id="roleRightsDao" class="com.kuaiyidian.dao.RoleRightsDao" />
+   <bean id="productCategoryDao" class="com.kuaiyidian.dao.ProductCategoryDao" />
+   <bean id="parameterDao" class="com.kuaiyidian.dao.ParameterDao" />
+   <bean id="questionDao" class="com.kuaiyidian.dao.QuestionDao" />  
+   <bean id="configDao" class="com.kuaiyidian.dao.ConfigDao" /> 
+   <bean id="productDao" class="com.kuaiyidian.dao.ProductDao" />
+   <bean id="productParameterDao" class="com.kuaiyidian.dao.ProductParameterDao" />
+   <bean id="attributeDao" class="com.kuaiyidian.dao.AttributeDao" />
+   <bean id="materialsDao" class="com.kuaiyidian.dao.MaterialsDao" />
+   <bean id="materialsAttributeDao" class="com.kuaiyidian.dao.MaterialsAttributeDao" />
+   <bean id="navigationBarDao" class="com.kuaiyidian.dao.NavigationBarDao" />
+   <bean id="updateProgramDao" class="com.kuaiyidian.dao.UpdateProgramDao" />
+   <bean id="downloadHelpDao" class="com.kuaiyidian.dao.DownloadHelpDao" />
+   <bean id="webDistributeDao" class="com.kuaiyidian.dao.WebDistributeDao" />
+   <bean id="advertisementerDao" class="com.kuaiyidian.dao.AdvertisementerDao" />
+   <bean id="userDao" class="com.kuaiyidian.dao.UserDao" /> 
+   <bean id="brandDao" class="com.kuaiyidian.dao.BrandDao" /> 
+   <bean id="newspaperDao" class="com.kuaiyidian.dao.NewspaperDao" /> 
+  <bean id="designCategoryDao" class="com.kuaiyidian.dao.DesignCategoryDao" /> 
+  <bean id="designDao" class="com.kuaiyidian.dao.DesignDao" />
+  <bean id="kydReportDao" class="com.kuaiyidian.dao.KydReportDao" /> 
+  <bean id="brandAdvertiseDao" class="com.kuaiyidian.dao.BrandAdvertiseDao" /> 
+  <bean id="weiliResearchesDao" class="com.kuaiyidian.dao.WeiliResearchesDao" /> 
+  <bean id="developmentDao" class="com.kuaiyidian.dao.DevelopmentDao" /> 
+  <bean id="recruitDao" class="com.kuaiyidian.dao.RecruitDao" />
+  <bean id="infoDao" class="com.kuaiyidian.dao.InfoDao" />
+  <bean id="reportDao" class="com.kuaiyidian.dao.ReportDao" /> 
+  <bean id="infoContentDao" class="com.kuaiyidian.dao.InfoContentDao" />
+  <bean id="bannerDao" class="com.kuaiyidian.dao.BannerDao" /> 
+  <bean id="seoPageDao" class="com.kuaiyidian.dao.SeoPageDao" /> 
+  <bean id="productDetailDao" class="com.kuaiyidian.dao.ProductDetailDao" /> 
+  <bean id="serviceTypeDao" class="com.kuaiyidian.dao.ServiceTypeDao" /> 
+  <bean id="imgListDao" class="com.kuaiyidian.dao.ImgListDao" /> 
+  <bean id="webDistributeTypeDao" class="com.kuaiyidian.dao.WebDistributeTypeDao" />
+  <bean id="recruitTypeDao" class="com.kuaiyidian.dao.RecruitTypeDao" /> 
+</beans>

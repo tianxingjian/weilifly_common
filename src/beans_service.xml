@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="
+    http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+    http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.5.xsd
+    http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-2.5.xsd
+    http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.5.xsd">
+    
+	<aop:config>  
+        <aop:aspect id="sqlAspect" ref="projectAspect">  
+            <aop:pointcut id="businessService"  
+                expression="execution(* com.*.service.*.*(..))" />  
+            <aop:around  pointcut-ref="businessService" method="doFilteSqlInfusionAround"/>  
+        </aop:aspect>  
+    </aop:config>
+    <bean id="projectAspect" class="com.shove.util.ProjectAspect" />
+    <bean id="taskExecutor" class="org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor">
+		<property name="corePoolSize" value="10"/>
+		<property name="maxPoolSize" value="30"/>
+	</bean>
+	
+    <bean id="sendMailService" class="com.kuaiyidian.service.SendMailService">
+		<property name="taskExecutor" ref="taskExecutor" />
+	</bean>
+	
+	<bean id="sendPhoneService" class="com.kuaiyidian.service.SendPhoneService">
+		<property name="taskExecutor" ref="taskExecutor" />
+	</bean>
+   
+    <!-- 管理员管理 -->
+    <bean id="adminService" class="com.kuaiyidian.service.AdminService" parent="baseService">
+    	<property name="adminDao" ref="adminDao" />
+   	</bean>
+   	
+    <bean id="regionService" class="com.kuaiyidian.service.RegionService" parent="baseService">
+    	<property name="regionDao" ref="regionDao" />
+   	</bean>
+   	
+   	<!-- 角色管理 -->
+   	<bean id="roleService" class="com.kuaiyidian.service.RoleService" parent="baseService">
+   	   <property name="roleDao" ref="roleDao"/>
+   	   <property name="roleRightsDao" ref="roleRightsDao"/>
+   	</bean>
+   	
+   	<!-- 角色管理 -->
+   	<bean id="roleRightsService" class="com.kuaiyidian.service.RoleRightsService" parent="baseService">
+   	   <property name="roleRightsDao" ref="roleRightsDao"/>
+   	</bean>
+   	
+   	<!-- 角色管理 -->
+   	<bean id="rightsService" class="com.kuaiyidian.service.RightsService" parent="baseService">
+   	   <property name="rightsDao" ref="rightsDao"/>
+   	</bean>
+   	<!-- 产品系列 -->
+   	<bean id="productCategoryService" class="com.kuaiyidian.service.ProductCategoryService" parent="baseService">
+   	   <property name="productCategoryDao" ref="productCategoryDao"/>
+   	</bean>
+   	
+   	<!-- 常见问题管理 -->
+   	<bean id="questionService" class="com.kuaiyidian.service.QuestionService" parent="baseService">
+   	   <property name="questionDao" ref="questionDao"/>
+   	</bean>
+   	
+   		<!-- 网点分布管理 -->
+	<bean id="webDistributeService"
+		class="com.kuaiyidian.service.WebDistributeService"
+		parent="baseService">
+		<property name="webDistributeDao" ref="webDistributeDao" />
+	</bean>
+   	
+   		<!-- 配置管理 -->
+   	<bean id="configService" class="com.kuaiyidian.service.ConfigService" parent="baseService">
+   	   <property name="configDao" ref="configDao"/>
+   	</bean>
+   	
+   	<!-- 参数 -->
+   	<bean id="parameterService" class="com.kuaiyidian.service.ParameterService" parent="baseService">
+   	   <property name="parameterDao" ref="parameterDao"/>
+   	</bean>
+   	
+   	<!-- 产品详情 -->
+   	<bean id="productDetailService" class="com.kuaiyidian.service.ProductDetailService" parent="baseService">
+   	   <property name="productDetailDao" ref="productDetailDao"/>
+   	</bean>
+		
+   	<!-- 产品 -->
+   	<bean id="productService" class="com.kuaiyidian.service.ProductService" parent="baseService">
+   	   <property name="productDao" ref="productDao"/>
+   	   <property name="productParameterDao" ref="productParameterDao"/>
+   	   <property name="productDetailDao" ref="productDetailDao"/>
+   	</bean>
+   	
+   	<!-- 参数 -->
+   	<bean id="productParameterService" class="com.kuaiyidian.service.ProductParameterService" parent="baseService">
+   	   <property name="productParameterDao" ref="productParameterDao"/>
+   	   <property name="parameterDao" ref="parameterDao"/>
+   	</bean>
+   	<!-- 属性管理 -->
+   	<bean id="attributeService" class="com.kuaiyidian.service.AttributeService" parent="baseService">
+   	   <property name="attributeDao" ref="attributeDao"/>
+   	</bean>
+   	<!-- 资料管理 -->
+   	<bean id="materialsService" class="com.kuaiyidian.service.MaterialsService" parent="baseService">
+   	   <property name="materialsDao" ref="materialsDao"/>
+   	   <property name="materialsAttributeDao" ref="materialsAttributeDao"/>
+   	   <property name="attributeDao" ref="attributeDao"/>
+   	</bean>
+   	<!-- 资料属性管理 -->
+   	<bean id="materialsAttributeService" class="com.kuaiyidian.service.MaterialsAttributeService" parent="baseService">
+   	   <property name="materialsAttributeDao" ref="materialsAttributeDao"/>
+   	   <property name="attributeDao" ref="attributeDao"/>
+   	</bean>
+   	<!-- 升级程序管理 -->
+   	<bean id="updateProgramService" class="com.kuaiyidian.service.UpdateProgramService" parent="baseService">
+   	   <property name="updateProgramDao" ref="updateProgramDao"/>
+   	</bean>
+   	<!-- 下载帮助管理 -->
+   	<bean id="downloadHelpService" class="com.kuaiyidian.service.DownloadHelpService" parent="baseService">
+   	   <property name="downloadHelpDao" ref="downloadHelpDao"/>
+   	</bean>
+   	<!-- 广告片管理 -->
+   	<bean id="advertisementService" class="com.kuaiyidian.service.AdvertisementService" parent="baseService">
+   	   <property name="advertisementerDao" ref="advertisementerDao"/>
+   	</bean>
+    <!-- 代理商管理 -->
+   	<bean id="userService" class="com.kuaiyidian.service.UserService" parent="baseService">
+   	   <property name="userDao" ref="userDao"/>
+   	</bean>
+   	<!-- 设计素材分类管理 -->
+   	<bean id="designCategoryService" class="com.kuaiyidian.service.DesignCategoryService" parent="baseService">
+   	   <property name="designCategoryDao" ref="designCategoryDao"/>
+   	</bean>
+   	<!-- 设计素材管理 -->
+   	<bean id="designService" class="com.kuaiyidian.service.DesignService" parent="baseService">
+   	   <property name="designDao" ref="designDao"/>
+   	</bean>
+   	<!-- 质检报告管理 -->
+   	<bean id="reportService" class="com.kuaiyidian.service.ReportService" parent="baseService">
+   	   <property name="reportDao" ref="reportDao"/>
+   	</bean>
+   	<!-- 人才招聘管理 -->
+   	<bean id="recruitService" class="com.kuaiyidian.service.RecruitService" parent="baseService">
+   	   <property name="recruitDao" ref="recruitDao"/>
+   	</bean>
+   	<!-- 底部信息类型管理 -->
+   	<bean id="infoService" class="com.kuaiyidian.service.InfoService" parent="baseService">
+   	   <property name="infoDao" ref="infoDao"/>
+   	</bean>
+   	<!-- 底部信息管理 -->
+   	<bean id="infoContentService" class="com.kuaiyidian.service.InfoContentService" parent="baseService">
+   	   <property name="infoContentDao" ref="infoContentDao"/>
+   	</bean>
+   	<!-- 品牌管理 -->
+   	<bean id="brandService" class="com.kuaiyidian.service.BrandService" parent="baseService">
+   	   <property name="brandDao" ref="brandDao"/>
+   	</bean>
+   	<!-- 华普报管理 -->
+   	<bean id="newspaperService" class="com.kuaiyidian.service.NewspaperService" parent="baseService">
+   	   <property name="newspaperDao" ref="newspaperDao"/>
+   	</bean>
+   	<!-- 快易典报道管理 -->
+   	<bean id="kydReportService" class="com.kuaiyidian.service.KydReportService" parent="baseService">
+   	   <property name="kydReportDao" ref="kydReportDao"/>
+   	</bean>  
+   	<!-- 品牌广告管理 -->
+   	<bean id="brandAdvertiseService" class="com.kuaiyidian.service.BrandAdvertiseService" parent="baseService">
+   	   <property name="brandAdvertiseDao" ref="brandAdvertiseDao"/>
+   	</bean>  
+   	<!-- 发展历程管理 -->
+   	<bean id="developmentService" class="com.kuaiyidian.service.DevelopmentService" parent="baseService">
+   	   <property name="developmentDao" ref="developmentDao"/>
+   	</bean>  
+   	<!-- 微力研究学院管理 -->
+   	<bean id="weiliResearchesService" class="com.kuaiyidian.service.WeiliResearchesService" parent="baseService">
+   	   <property name="weiliResearchesDao" ref="weiliResearchesDao"/>
+   	</bean> 
+   	<!--Banner管理 -->
+   	<bean id="bannerService" class="com.kuaiyidian.service.BannerService" parent="baseService">
+   	   <property name="bannerDao" ref="bannerDao"/>
+   	</bean>
+   	<!--NavigationBarService管理 -->
+   	<bean id="navigationBarService" class="com.kuaiyidian.service.NavigationBarService" parent="baseService">
+   	   <property name="navigationBarDao" ref="navigationBarDao"/>
+   	</bean>
+   	<!--SEO管理 -->
+   	<bean id="seoPageService" class="com.kuaiyidian.service.SeoPageService" parent="baseService">
+   	   <property name="seoPageDao" ref="seoPageDao"/>
+   	</bean>
+   		<!--服务类型管理 -->
+   	<bean id="serviceTypeService" class="com.kuaiyidian.service.ServiceTypeService" parent="baseService">
+   	   <property name="serviceTypeDao" ref="serviceTypeDao"/>
+   	</bean>
+   	<!-- 图片列表 -->
+   	<bean id="imgListService" class="com.kuaiyidian.service.ImgListService" parent="baseService">
+   	   <property name="imgListDao" ref="imgListDao"/>
+   	</bean>
+   	 	<!-- 网点分布类型 -->
+   	<bean id="webDistributeTypeService" class="com.kuaiyidian.service.WebDistributeTypeService" parent="baseService">
+   	   <property name="webDistributeTypeDao" ref="webDistributeTypeDao"/>
+   	</bean>
+   	   	 	<!-- 人才招聘类型 -->
+   	<bean id="recruitTypeService" class="com.kuaiyidian.service.RecruitTypeService" parent="baseService">
+   	   <property name="recruitTypeDao" ref="recruitTypeDao"/>
+   	</bean>
+</beans>
