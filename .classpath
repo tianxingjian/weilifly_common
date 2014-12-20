@@ -6,7 +6,7 @@
 	<classpathentry exported="true" kind="lib" path="lib/com.shovesoft.jar" sourcepath="E:/javaSRC/com.shovesoft.src.zip"/>
 	<classpathentry exported="true" kind="lib" path="lib/commons-codec-1.3.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/commons-httpclient-3.0.1.jar"/>
-	<classpathentry exported="true" kind="lib" path="lib/commons-lang-2.5.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/commons-lang-2.5.jar" sourcepath="D:/javaSRC/commons-lang-2.5.src.zip"/>
 	<classpathentry exported="true" kind="lib" path="lib/commons-logging-1.1.1.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/dom4j-1.6.1.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/jaxen-1.1-beta-6.jar"/>

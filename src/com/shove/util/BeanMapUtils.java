@@ -27,7 +27,7 @@ import com.shove.data.RowCollection;
 /**
  * 
  * @Description Map域实体对象转换
- * @Author Yang Cheng
+ * @Author 微力科技
  * @Date: Feb 9, 2012 1:55:22 AM
  * @Version
  * 
@@ -37,7 +37,7 @@ public class BeanMapUtils {
 	public static String format ="yyyy-MM-dd HH:mm:ss";
 	/**
 	 * @Description: 将对象转为Map
-	 * @Author Yang Cheng
+	 * @Author 微力科技
 	 * @Date: Feb 9, 2012 1:56:20 AM
 	 * @param <T>
 	 * @param bean

@@ -6,11 +6,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-import com.kuaiyidian.database.Dao.Procedures;
 import com.shove.data.ConnectionManager;
 import com.shove.data.DataException;
 import com.shove.data.DataSet;
 import com.shove.vo.PageBean;
+import com.weili.database.Dao.Procedures;
 
 /**
  * 基类

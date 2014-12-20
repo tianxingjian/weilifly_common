@@ -5,7 +5,7 @@ import org.aspectj.lang.ProceedingJoinPoint;
 /**   
 *    
 * @Description 切面
-* @Author Yang Cheng
+* @Author 微力科技
 * @Date: Nov 22, 2013 9:35:51 PM   
 * @Version    
 *    
@@ -14,7 +14,7 @@ public class ProjectAspect {
 	
 	/** 
 	* @Description: 函数参数SQL注入过滤
-	* @Author Yang Cheng
+	* @Author 微力科技
 	* @Date: Nov 22, 2013 9:36:27 PM  
 	* @param joinPoint
 	* @return
